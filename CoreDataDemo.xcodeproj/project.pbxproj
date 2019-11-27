@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5065A654238D630F00AA6348 /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */; };
 		FC9F3E742376CDD3003B2D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */; };
 		FC9F3E762376CDD3003B2D0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */; };
 		FC9F3E7B2376CDD3003B2D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E792376CDD3003B2D0A /* Main.storyboard */; };
 		FC9F3E7D2376CDD8003B2D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E7C2376CDD8003B2D0A /* Assets.xcassets */; };
 		FC9F3E802376CDD8003B2D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E7E2376CDD8003B2D0A /* LaunchScreen.storyboard */; };
 		FC9F3E8C2376DAA2003B2D0A /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8B2376DAA2003B2D0A /* Emoji.swift */; };
-		FC9F3E8E2376E06B003B2D0A /* EmojiTabeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8D2376E06B003B2D0A /* EmojiTabeViewController.swift */; };
+		FC9F3E8E2376E06B003B2D0A /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */; };
 		FC9F3E902376E39C003B2D0A /* StaticEmojiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8F2376E39C003B2D0A /* StaticEmojiData.swift */; };
 		FC9F3E942376F517003B2D0A /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */; };
 		FCC3E6562377086900815872 /* AddEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3E6552377086900815872 /* AddEditTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5065A653238D630F00AA6348 /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
 		FC9F3E702376CDD3003B2D0A /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +30,7 @@
 		FC9F3E7F2376CDD8003B2D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC9F3E812376CDD8003B2D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC9F3E8B2376DAA2003B2D0A /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		FC9F3E8D2376E06B003B2D0A /* EmojiTabeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTabeViewController.swift; sourceTree = "<group>"; };
+		FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
 		FC9F3E8F2376E39C003B2D0A /* StaticEmojiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticEmojiData.swift; sourceTree = "<group>"; };
 		FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
 		FCC3E6552377086900815872 /* AddEditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTableViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		FC9F3E882376D9AE003B2D0A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FC9F3E8D2376E06B003B2D0A /* EmojiTabeViewController.swift */,
+				FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */,
 				FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */,
 				FCC3E6552377086900815872 /* AddEditTableViewController.swift */,
 			);
@@ -99,6 +101,7 @@
 			children = (
 				FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */,
 				FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */,
+				5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */,
 			);
 			path = "App Delegats";
 			sourceTree = "<group>";
@@ -175,9 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9F3E742376CDD3003B2D0A /* AppDelegate.swift in Sources */,
+				5065A654238D630F00AA6348 /* CoreDataDemo.xcdatamodeld in Sources */,
 				FCC3E6562377086900815872 /* AddEditTableViewController.swift in Sources */,
 				FC9F3E902376E39C003B2D0A /* StaticEmojiData.swift in Sources */,
-				FC9F3E8E2376E06B003B2D0A /* EmojiTabeViewController.swift in Sources */,
+				FC9F3E8E2376E06B003B2D0A /* EmojiTableViewController.swift in Sources */,
 				FC9F3E8C2376DAA2003B2D0A /* Emoji.swift in Sources */,
 				FC9F3E942376F517003B2D0A /* EmojiTableViewCell.swift in Sources */,
 				FC9F3E762376CDD3003B2D0A /* SceneDelegate.swift in Sources */,
@@ -378,6 +382,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5065A653238D630F00AA6348 /* CoreDataDemo.xcdatamodel */,
+			);
+			currentVersion = 5065A653238D630F00AA6348 /* CoreDataDemo.xcdatamodel */;
+			path = CoreDataDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FC9F3E682376CDD3003B2D0A /* Project object */;
 }

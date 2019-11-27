@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XRe-TA-Rlr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XRe-TA-Rlr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Emoji Dictionary-->
         <scene sceneID="mkk-FI-2np">
             <objects>
-                <tableViewController id="X2w-0Q-o2c" customClass="EmojiTabeViewControllerTableViewController" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="X2w-0Q-o2c" customClass="EmojiTableViewController" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="645-Tm-hqi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -242,7 +242,7 @@
                     <connections>
                         <outlet property="descriptionTextField" destination="qcS-eX-FOI" id="mEM-Ef-Ad5"/>
                         <outlet property="nameTextField" destination="9i1-7a-zeL" id="4et-77-YZg"/>
-                        <outlet property="saveButton" destination="vOy-BV-ohj" id="rcd-jD-bsS"/>
+                        <outlet property="saveButton" destination="vOy-BV-ohj" id="ZDn-9I-Ljh"/>
                         <outlet property="symbolTextField" destination="nlb-Vr-hZ5" id="tnI-eM-BAs"/>
                         <outlet property="usageTextField" destination="Nyc-wD-t3V" id="5Ul-8S-oEE"/>
                     </connections>

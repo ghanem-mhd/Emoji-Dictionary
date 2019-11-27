@@ -7,11 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
-class EmojiTabeViewControllerTableViewController: UITableViewController {
+class EmojiTableViewController: UITableViewController {
+    
+    var emojiList : [NSManagedObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EmojiMO")
+        
+        do {
+            self.emojiList = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -20,7 +41,8 @@ class EmojiTabeViewControllerTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return emojis.count
+            // return emojis.count
+            return self.emojiList.count
         } else {
             return 0
         }
@@ -29,7 +51,8 @@ class EmojiTabeViewControllerTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
-        let emoji = emojis[indexPath.row]
+        // let emoji = emojis[indexPath.row]
+        let emoji = emojiList[indexPath.row]
         cell.update(with: emoji)
         return cell
     }
@@ -49,18 +72,35 @@ class EmojiTabeViewControllerTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            emojis.remove(at: indexPath.row)
+            let emoji = emojiList[indexPath.row]
+            emojiList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            managedContext.delete(emoji)
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Error while deleting entry: \(error.userInfo)")
+            }
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            print("----")
         }
     }
     
     
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedEmoji = emojis.remove(at: fromIndexPath.row)
-        emojis.insert(movedEmoji, at: to.row)
+        let movedEmoji = emojiList.remove(at: fromIndexPath.row)
+        emojiList.insert(movedEmoji, at: to.row)
         self.tableView.reloadData()
     }
     
@@ -83,9 +123,9 @@ class EmojiTabeViewControllerTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEmoji"{
             if let selectedIndexPath = tableView.indexPathForSelectedRow{
-                let selectedEmoji = emojis[selectedIndexPath.row]
+                let selectedEmoji = self.emojiList[selectedIndexPath.row]
                 let addEditTableViewController = (segue.destination as! UINavigationController).viewControllers.first as! AddEditTableViewController
-                addEditTableViewController.emoji = selectedEmoji
+                addEditTableViewController.emojiData = selectedEmoji
             }
         }
     }
@@ -96,14 +136,14 @@ class EmojiTabeViewControllerTableViewController: UITableViewController {
         }
         
         let addEditTableViwerController = unwindSegue.source as! AddEditTableViewController
-        
-        if let emoji = addEditTableViwerController.emoji{
-            if let selectedIndexPath = tableView.indexPathForSelectedRow{
-                emojis[selectedIndexPath.row] = emoji
+
+        if let emoji = addEditTableViwerController.emojiData {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                emojiList[selectedIndexPath.row] = emoji
                 tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
-            }else{
-                let newIndexPath = IndexPath(row: emojis.count, section: 0)
-                emojis.append(emoji)
+            } else {
+                let newIndexPath = IndexPath(row: emojiList.count, section: 0)
+                emojiList.append(emoji)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         }

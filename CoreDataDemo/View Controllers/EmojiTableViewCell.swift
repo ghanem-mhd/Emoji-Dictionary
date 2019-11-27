@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EmojiTableViewCell: UITableViewCell {
 
@@ -19,10 +20,10 @@ class EmojiTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func update(with emoji : Emoji){
-        symbolLabel.text = emoji.symbol
-        descriptionLabel.text = emoji.description
-        nameLabel.text = emoji.name
+    func update(with emoji : NSManagedObject) {
+        symbolLabel.text = emoji.value(forKeyPath: "symbol") as? String
+        descriptionLabel.text = emoji.value(forKeyPath: "desc") as? String
+        nameLabel.text = emoji.value(forKeyPath: "name") as? String
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddEditTableViewController: UITableViewController {
 
@@ -15,18 +16,17 @@ class AddEditTableViewController: UITableViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var usageTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    var emoji : Emoji?
+        
+    var emojiData : NSManagedObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let emoji = emoji{
-            symbolTextField.text = emoji.symbol
-            nameTextField.text = emoji.name
-            descriptionTextField.text = emoji.description
-            usageTextField.text = emoji.usage
-        }
+        symbolTextField.text = self.emojiData?.value(forKeyPath: "symbol") as? String
+        nameTextField.text = self.emojiData?.value(forKeyPath: "name") as? String
+        descriptionTextField.text = self.emojiData?.value(forKeyPath: "desc") as? String
+        usageTextField.text = self.emojiData?.value(forKeyPath: "usage") as? String
+        
         
         updateSaveButtonState()
 
@@ -36,6 +36,7 @@ class AddEditTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     
     func updateSaveButtonState(){
         let symbolText = symbolTextField.text ?? ""
@@ -55,12 +56,27 @@ class AddEditTableViewController: UITableViewController {
             return
         }
         
-        let symbol = symbolTextField.text!
-        let name = nameTextField.text!
-        let description = descriptionTextField.text!
-        let usage = usageTextField.text!
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
         
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "EmojiMO", in: managedContext)!
+        
+        let emoji = NSManagedObject(entity: entity, insertInto: managedContext)
 
-        self.emoji = Emoji(symbol: symbol, name: name, description: description, usage: usage)
+        emoji.setValue(symbolTextField.text!, forKeyPath: "symbol")
+        emoji.setValue(nameTextField.text!, forKeyPath: "name")
+        emoji.setValue(descriptionTextField.text!, forKeyPath: "desc")
+        emoji.setValue(usageTextField.text!, forKeyPath: "usage")
+        
+        self.emojiData = emoji
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
 }
