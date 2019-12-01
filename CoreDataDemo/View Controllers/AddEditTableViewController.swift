@@ -86,9 +86,10 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
         saveButton.isEnabled = !symbolText.isEmpty && !nameText.isEmpty && !descripitonText.isEmpty
     }
     
-    @IBAction func textChanged(_ sender: UITextField) {
+    @IBAction func textChanged(_ sender: Any) {
         updateSaveButtonState()
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "SaveUnwind" else {

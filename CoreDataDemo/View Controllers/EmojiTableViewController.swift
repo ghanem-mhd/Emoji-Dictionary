@@ -114,6 +114,7 @@ class EmojiTableViewController: UITableViewController, NSFetchedResultsControlle
             do {
                 moc.delete(emoji)
                 try moc.save()
+                moc.refreshAllObjects()
             } catch let error as NSError {
                 print("Error while deleting entry: \(error.userInfo)")
             }
