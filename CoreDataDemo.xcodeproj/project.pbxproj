@@ -3,25 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5065A654238D630F00AA6348 /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */; };
+		6185B08D9E8FAA430C385C01 /* Pods_CoreDataDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 757C3C7F71682D4C3D056473 /* Pods_CoreDataDemo.framework */; };
+		FC9A8A3B2392DDB100682E8D /* TagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A8A3A2392DDB100682E8D /* TagTableViewController.swift */; };
 		FC9F3E742376CDD3003B2D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */; };
 		FC9F3E762376CDD3003B2D0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */; };
 		FC9F3E7B2376CDD3003B2D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E792376CDD3003B2D0A /* Main.storyboard */; };
 		FC9F3E7D2376CDD8003B2D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E7C2376CDD8003B2D0A /* Assets.xcassets */; };
 		FC9F3E802376CDD8003B2D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC9F3E7E2376CDD8003B2D0A /* LaunchScreen.storyboard */; };
-		FC9F3E8C2376DAA2003B2D0A /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8B2376DAA2003B2D0A /* Emoji.swift */; };
 		FC9F3E8E2376E06B003B2D0A /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */; };
-		FC9F3E902376E39C003B2D0A /* StaticEmojiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E8F2376E39C003B2D0A /* StaticEmojiData.swift */; };
 		FC9F3E942376F517003B2D0A /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */; };
 		FCC3E6562377086900815872 /* AddEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3E6552377086900815872 /* AddEditTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5065A653238D630F00AA6348 /* CoreDataDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataDemo.xcdatamodel; sourceTree = "<group>"; };
+		757C3C7F71682D4C3D056473 /* Pods_CoreDataDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BACBAD0BB8EFB57A8CFD1D5B /* Pods-CoreDataDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataDemo.debug.xcconfig"; path = "Target Support Files/Pods-CoreDataDemo/Pods-CoreDataDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		F27C9E8551A82094BF4265D6 /* Pods-CoreDataDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataDemo.release.xcconfig"; path = "Target Support Files/Pods-CoreDataDemo/Pods-CoreDataDemo.release.xcconfig"; sourceTree = "<group>"; };
+		FC9A8A3A2392DDB100682E8D /* TagTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTableViewController.swift; sourceTree = "<group>"; };
 		FC9F3E702376CDD3003B2D0A /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,9 +33,7 @@
 		FC9F3E7C2376CDD8003B2D0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9F3E7F2376CDD8003B2D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC9F3E812376CDD8003B2D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC9F3E8B2376DAA2003B2D0A /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
-		FC9F3E8F2376E39C003B2D0A /* StaticEmojiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticEmojiData.swift; sourceTree = "<group>"; };
 		FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
 		FCC3E6552377086900815872 /* AddEditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6185B08D9E8FAA430C385C01 /* Pods_CoreDataDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		071A8161234342E3918A2813 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				757C3C7F71682D4C3D056473 /* Pods_CoreDataDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDDC9F6855BDA3F56FBC6D75 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BACBAD0BB8EFB57A8CFD1D5B /* Pods-CoreDataDemo.debug.xcconfig */,
+				F27C9E8551A82094BF4265D6 /* Pods-CoreDataDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		FC9F3E672376CDD3003B2D0A = {
 			isa = PBXGroup;
 			children = (
 				FC9F3E722376CDD3003B2D0A /* CoreDataDemo */,
 				FC9F3E712376CDD3003B2D0A /* Products */,
+				DDDC9F6855BDA3F56FBC6D75 /* Pods */,
+				071A8161234342E3918A2813 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +105,7 @@
 				FC9F3E8D2376E06B003B2D0A /* EmojiTableViewController.swift */,
 				FC9F3E932376F517003B2D0A /* EmojiTableViewCell.swift */,
 				FCC3E6552377086900815872 /* AddEditTableViewController.swift */,
+				FC9A8A3A2392DDB100682E8D /* TagTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -90,8 +113,7 @@
 		FC9F3E892376D9EB003B2D0A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FC9F3E8B2376DAA2003B2D0A /* Emoji.swift */,
-				FC9F3E8F2376E39C003B2D0A /* StaticEmojiData.swift */,
+				5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,7 +123,6 @@
 			children = (
 				FC9F3E752376CDD3003B2D0A /* SceneDelegate.swift */,
 				FC9F3E732376CDD3003B2D0A /* AppDelegate.swift */,
-				5065A652238D630F00AA6348 /* CoreDataDemo.xcdatamodeld */,
 			);
 			path = "App Delegats";
 			sourceTree = "<group>";
@@ -113,9 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC9F3E842376CDD8003B2D0A /* Build configuration list for PBXNativeTarget "CoreDataDemo" */;
 			buildPhases = (
+				B429CB98DAFE26440078F887 /* [CP] Check Pods Manifest.lock */,
 				FC9F3E6C2376CDD3003B2D0A /* Sources */,
 				FC9F3E6D2376CDD3003B2D0A /* Frameworks */,
 				FC9F3E6E2376CDD3003B2D0A /* Resources */,
+				C691D64E4D8CF87B61FE2D22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -172,6 +195,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B429CB98DAFE26440078F887 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoreDataDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C691D64E4D8CF87B61FE2D22 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoreDataDemo/Pods-CoreDataDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoreDataDemo/Pods-CoreDataDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoreDataDemo/Pods-CoreDataDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC9F3E6C2376CDD3003B2D0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -179,10 +244,9 @@
 			files = (
 				FC9F3E742376CDD3003B2D0A /* AppDelegate.swift in Sources */,
 				5065A654238D630F00AA6348 /* CoreDataDemo.xcdatamodeld in Sources */,
+				FC9A8A3B2392DDB100682E8D /* TagTableViewController.swift in Sources */,
 				FCC3E6562377086900815872 /* AddEditTableViewController.swift in Sources */,
-				FC9F3E902376E39C003B2D0A /* StaticEmojiData.swift in Sources */,
 				FC9F3E8E2376E06B003B2D0A /* EmojiTableViewController.swift in Sources */,
-				FC9F3E8C2376DAA2003B2D0A /* Emoji.swift in Sources */,
 				FC9F3E942376F517003B2D0A /* EmojiTableViewCell.swift in Sources */,
 				FC9F3E762376CDD3003B2D0A /* SceneDelegate.swift in Sources */,
 			);
@@ -326,6 +390,7 @@
 		};
 		FC9F3E852376CDD8003B2D0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BACBAD0BB8EFB57A8CFD1D5B /* Pods-CoreDataDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -344,6 +409,7 @@
 		};
 		FC9F3E862376CDD8003B2D0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F27C9E8551A82094BF4265D6 /* Pods-CoreDataDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Emoji" representedClassName="Emoji" syncable="YES" codeGenerationType="class">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="symbol" optional="YES" attributeType="String"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="emojis" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="emojis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Emoji" inverseName="tags" inverseEntity="Emoji"/>
+    </entity>
+    <elements>
+        <element name="Emoji" positionX="-541.05859375" positionY="108.9140625" width="128" height="103"/>
+        <element name="Tag" positionX="-213.26171875" positionY="154.51953125" width="128" height="73"/>
+    </elements>
+</model>

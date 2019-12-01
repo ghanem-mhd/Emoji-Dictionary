@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XRe-TA-Rlr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H6Y-sK-k7i">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -71,6 +71,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Emoji Dictionary" id="Q6r-tV-4Pk">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="oe1-YZ-q83">
+                            <connections>
+                                <action selector="onEditClicked:" destination="X2w-0Q-o2c" id="BJI-Sx-21f"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0bw-e8-Wqf">
                             <connections>
                                 <segue destination="Evi-qG-qaG" kind="show" id="4IM-9g-wot"/>
@@ -80,14 +85,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ynm-dI-Wqm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="676"/>
+            <point key="canvasLocation" x="1992.753623188406" y="675.66964285714278"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Emojis-->
         <scene sceneID="ZpC-bl-ivv">
             <objects>
                 <navigationController id="XRe-TA-Rlr" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="xXs-sy-doJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <tabBarItem key="tabBarItem" title="Emojis" image="smiley" catalog="system" id="fdf-U7-Nxf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xXs-sy-doJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -96,13 +102,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kZ-rL-JOM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130" y="677"/>
+            <point key="canvasLocation" x="1039.1304347826087" y="676.33928571428567"/>
         </scene>
         <!--Edit Emoji-->
         <scene sceneID="4Kd-sA-IIx">
             <objects>
                 <tableViewController id="POg-z0-Dzx" customClass="AddEditTableViewController" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0T2-gC-gfx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0T2-gC-gfx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -154,10 +160,10 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="leading" secondItem="Cpc-NX-qi6" secondAttribute="leadingMargin" id="NKf-Ak-A8R"/>
-                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="top" secondItem="Cpc-NX-qi6" secondAttribute="topMargin" id="iKn-cs-FRR"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="9i1-7a-zeL" secondAttribute="trailing" id="owe-zI-dgn"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="9i1-7a-zeL" secondAttribute="bottom" id="xZD-tH-JUC"/>
+                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="trailing" secondItem="Cpc-NX-qi6" secondAttribute="trailingMargin" id="0la-mj-pgH"/>
+                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="centerY" secondItem="Cpc-NX-qi6" secondAttribute="centerY" id="Cdz-sA-7iE"/>
+                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="leading" secondItem="Cpc-NX-qi6" secondAttribute="leadingMargin" id="Oe8-Zc-PdW"/>
+                                                <constraint firstItem="9i1-7a-zeL" firstAttribute="top" secondItem="Cpc-NX-qi6" secondAttribute="topMargin" id="vfQ-lg-L6J"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -191,29 +197,55 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Usage" id="PNZ-qZ-ahP">
+                            <tableViewSection headerTitle="Tags" id="PNZ-qZ-ahP">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aiH-k1-A1d">
-                                        <rect key="frame" x="0.0" y="326.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="aiH-k1-A1d">
+                                        <rect key="frame" x="0.0" y="326.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aiH-k1-A1d" id="ibr-XL-VQg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nyc-wD-t3V">
-                                                    <rect key="frame" x="20" y="11" width="374" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="textChanged:" destination="POg-z0-Dzx" eventType="editingDidEnd" id="kWJ-ex-VXd"/>
-                                                    </connections>
-                                                </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSI-S8-lXN" customClass="TagListView" customModule="TagListView">
+                                                    <rect key="frame" x="20" y="11" width="374" height="78"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="tagBackgroundColor">
+                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="tagSelectedBackgroundColor">
+                                                            <color key="value" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingY">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="paddingX">
+                                                            <real key="value" value="7"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="marginY">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="marginX">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Nyc-wD-t3V" secondAttribute="bottom" id="B2w-YH-09U"/>
-                                                <constraint firstItem="Nyc-wD-t3V" firstAttribute="leading" secondItem="ibr-XL-VQg" secondAttribute="leadingMargin" id="C4T-oO-98R"/>
-                                                <constraint firstItem="Nyc-wD-t3V" firstAttribute="top" secondItem="ibr-XL-VQg" secondAttribute="topMargin" id="U9C-bs-fKL"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Nyc-wD-t3V" secondAttribute="trailing" id="uyh-OY-DqF"/>
+                                                <constraint firstItem="PSI-S8-lXN" firstAttribute="leading" secondItem="ibr-XL-VQg" secondAttribute="leading" constant="20" id="1Rk-yd-WxT"/>
+                                                <constraint firstItem="PSI-S8-lXN" firstAttribute="leading" secondItem="ibr-XL-VQg" secondAttribute="leading" constant="20" id="49O-VY-NTs"/>
+                                                <constraint firstItem="PSI-S8-lXN" firstAttribute="top" secondItem="ibr-XL-VQg" secondAttribute="topMargin" id="eDS-LL-aUT"/>
+                                                <constraint firstAttribute="trailing" secondItem="PSI-S8-lXN" secondAttribute="trailing" constant="20" id="kYR-03-AgA"/>
+                                                <constraint firstItem="PSI-S8-lXN" firstAttribute="bottom" secondItem="ibr-XL-VQg" secondAttribute="bottomMargin" id="xGY-gL-rjF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -244,13 +276,13 @@
                         <outlet property="nameTextField" destination="9i1-7a-zeL" id="4et-77-YZg"/>
                         <outlet property="saveButton" destination="vOy-BV-ohj" id="ZDn-9I-Ljh"/>
                         <outlet property="symbolTextField" destination="nlb-Vr-hZ5" id="tnI-eM-BAs"/>
-                        <outlet property="usageTextField" destination="Nyc-wD-t3V" id="5Ul-8S-oEE"/>
+                        <outlet property="tagsList" destination="PSI-S8-lXN" id="HX5-bs-1rQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOF-tk-JUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="rVh-UH-6kY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2773.913043478261" y="675.66964285714278"/>
+            <point key="canvasLocation" x="3684.057971014493" y="675"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WJy-M0-ALT">
@@ -269,9 +301,94 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FzI-sn-ejv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1863.7681159420292" y="675.66964285714278"/>
+            <point key="canvasLocation" x="2773.913043478261" y="675"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="u9e-hk-3Rf">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="H6Y-sK-k7i" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ae-yI-fkG">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="XRe-TA-Rlr" kind="relationship" relationship="viewControllers" id="ijB-TM-zgE"/>
+                        <segue destination="VkA-Ta-HGd" kind="relationship" relationship="viewControllers" id="hJm-gD-dNN"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bnl-eG-Bjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.98550724637681" y="676.33928571428567"/>
+        </scene>
+        <!--Tags-->
+        <scene sceneID="RwM-1p-ft8">
+            <objects>
+                <tableViewController id="PIC-3N-CJO" customClass="TagTableViewController" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BZO-sR-MAK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tagTableCell" textLabel="qCY-D2-XNF" style="IBUITableViewCellStyleDefault" id="PPU-Xk-TB8">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PPU-Xk-TB8" id="DEB-R0-CxX">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qCY-D2-XNF">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PIC-3N-CJO" id="GdF-Yr-2ay"/>
+                            <outlet property="delegate" destination="PIC-3N-CJO" id="ZxX-G8-bT4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tags" id="aQJ-sI-9EU">
+                        <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="T6k-9u-NFP">
+                            <connections>
+                                <action selector="onAddClicked:" destination="PIC-3N-CJO" id="bKj-rT-9eH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dux-BQ-n7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1074" y="1455"/>
+        </scene>
+        <!--Tags-->
+        <scene sceneID="K87-NK-dYz">
+            <objects>
+                <navigationController id="VkA-Ta-HGd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Tags" image="tag" catalog="system" id="8Pr-3i-RDb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HxW-QG-Rcn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PIC-3N-CJO" kind="relationship" relationship="rootViewController" id="HaW-3P-Cq9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fel-eb-4Y2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="219" y="1461"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="smiley" catalog="system" width="64" height="60"/>
+        <image name="tag" catalog="system" width="64" height="58"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mXb-nb-qLH"/>
     </inferredMetricsTieBreakers>

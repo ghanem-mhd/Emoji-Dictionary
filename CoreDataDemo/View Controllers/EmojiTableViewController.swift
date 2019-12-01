@@ -9,123 +9,136 @@
 import UIKit
 import CoreData
 
-class EmojiTableViewController: UITableViewController {
+class EmojiTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var emojiList : [NSManagedObject] = []
+    var moc : NSManagedObjectContext!
+    var fetchedResultsController: NSFetchedResultsController<Emoji>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "EmojiMO")
-        
+        self.moc = appDelegate.persistentContainer.viewContext
+        initializeFetchedResultsController()
+    }
+    
+    func initializeFetchedResultsController() {
+        let request = NSFetchRequest<Emoji>(entityName: "Emoji")
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        request.sortDescriptors = [nameSort]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
         do {
-            self.emojiList = try managedContext.fetch(fetchRequest)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
     
+    
+    @IBAction func onEditClicked(_ sender: Any) {
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+        self.navigationItem.leftBarButtonItem?.title = self.tableView.isEditing ? "Done" : "Edit"
+    }
+    
+        
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return fetchedResultsController.sections!.count
     }
-    
+     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            // return emojis.count
-            return self.emojiList.count
-        } else {
-            return 0
+        guard let sections = fetchedResultsController.sections else {
+            fatalError("No sections in fetchedResultsController")
         }
+        let sectionInfo = sections[section]
+        return sectionInfo.numberOfObjects
     }
-    
-    
+        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! EmojiTableViewCell
-        // let emoji = emojis[indexPath.row]
-        let emoji = emojiList[indexPath.row]
+        guard let emoji = self.fetchedResultsController?.object(at: indexPath) else {
+            fatalError("Attempt to configure cell without a managed object")
+        }
         cell.update(with: emoji)
         return cell
     }
     
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+           tableView.beginUpdates()
+       }
         
-    }
+       func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+           switch type {
+               case .insert:
+                   tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+               case .delete:
+                   tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+               case .move:
+                   break
+               case .update:
+                   break
+               default:
+                   break
+           }
+       }
+        
+       func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+           switch type {
+           case .insert:
+               tableView.insertRows(at: [newIndexPath!], with: .fade)
+           case .delete:
+               tableView.deleteRows(at: [indexPath!], with: .fade)
+           case .update:
+               tableView.reloadRows(at: [indexPath!], with: .fade)
+           case .move:
+               tableView.moveRow(at: indexPath!, to: newIndexPath!)
+           default:
+               break
+           }
+       }
+        
+       func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+           tableView.endUpdates()
+       }
     
+  
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let emoji = emojiList[indexPath.row]
-            emojiList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
+            guard let emoji = self.fetchedResultsController?.object(at: indexPath) else {
+                fatalError("Attempt to fetch non existed item")
             }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            managedContext.delete(emoji)
-            
             do {
-                try managedContext.save()
+                moc.delete(emoji)
+                try moc.save()
             } catch let error as NSError {
                 print("Error while deleting entry: \(error.userInfo)")
             }
-            
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-            print("----")
         }
     }
-    
-    
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedEmoji = emojiList.remove(at: fromIndexPath.row)
-        emojiList.insert(movedEmoji, at: to.row)
-        self.tableView.reloadData()
-    }
-    
+        
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return UITableViewCell.EditingStyle.delete
     }
-    
-    
-    /*
+        
      // Override to support conditional rearranging of the table view.
      override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
+         // Return false if you do not want the item to be re-orderable.
+         return true
      }
-     */
-    
-    // MARK: - Navigation
-    
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditEmoji"{
             if let selectedIndexPath = tableView.indexPathForSelectedRow{
-                let selectedEmoji = self.emojiList[selectedIndexPath.row]
+                guard let selectedEmoji = self.fetchedResultsController?.object(at: selectedIndexPath) else {
+                    fatalError("Attempt to fetch non existed item")
+                }
                 let addEditTableViewController = (segue.destination as! UINavigationController).viewControllers.first as! AddEditTableViewController
-                addEditTableViewController.emojiData = selectedEmoji
+                addEditTableViewController.viewedEmoji = selectedEmoji
             }
         }
     }
@@ -133,19 +146,6 @@ class EmojiTableViewController: UITableViewController {
     @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
         guard unwindSegue.identifier == "SaveUnwind" else {
             return
-        }
-        
-        let addEditTableViwerController = unwindSegue.source as! AddEditTableViewController
-
-        if let emoji = addEditTableViwerController.emojiData {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                emojiList[selectedIndexPath.row] = emoji
-                tableView.reloadRows(at: [selectedIndexPath], with: .automatic)
-            } else {
-                let newIndexPath = IndexPath(row: emojiList.count, section: 0)
-                emojiList.append(emoji)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
         }
     }
 }

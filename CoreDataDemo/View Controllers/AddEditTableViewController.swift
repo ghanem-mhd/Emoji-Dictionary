@@ -8,43 +8,82 @@
 
 import UIKit
 import CoreData
+import TagListView
 
-class AddEditTableViewController: UITableViewController {
+class AddEditTableViewController: UITableViewController, TagListViewDelegate {
 
+     var moc : NSManagedObjectContext!
+    
     @IBOutlet weak var symbolTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var usageTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-        
-    var emojiData : NSManagedObject?
+    @IBOutlet weak var tagsList: TagListView!
+    
+    var viewedEmoji : NSManagedObject?
+    
+    var selectedTags = Set<String>()
+    
+    var alltags = [Tag]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        symbolTextField.text = self.emojiData?.value(forKeyPath: "symbol") as? String
-        nameTextField.text = self.emojiData?.value(forKeyPath: "name") as? String
-        descriptionTextField.text = self.emojiData?.value(forKeyPath: "desc") as? String
-        usageTextField.text = self.emojiData?.value(forKeyPath: "usage") as? String
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        self.moc = appDelegate.persistentContainer.viewContext
         
+        symbolTextField.text        = self.viewedEmoji?.value(forKeyPath: "symbol") as? String
+        nameTextField.text          = self.viewedEmoji?.value(forKeyPath: "name") as? String
+        descriptionTextField.text   = self.viewedEmoji?.value(forKeyPath: "desc") as? String
+        if let emojiTags = self.viewedEmoji?.value(forKey: "tags") as? Set<Tag> {
+            for tag in emojiTags {
+                selectedTags.insert(tag.name!)
+            }
+        }
+        
+        fetchAllTags()
+
+        tagsList.delegate = self
         
         updateSaveButtonState()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    func fetchAllTags(){
+        do {
+            let fetchRequest = NSFetchRequest<Tag>(entityName: "Tag")
+            self.alltags = try moc.fetch(fetchRequest)
+            for tag in self.alltags {
+                tagsList.addTag(tag.name!)
+            }
+            for tagView in tagsList.tagViews {
+                if let title = tagView.titleLabel?.text {
+                    if selectedTags.contains(title) {
+                        tagView.isSelected = true
+                    }
+                }
+            }
+        } catch {
+            fatalError("Failed to fetch tags: \(error)")
+        }
+    }
+    
+    func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        if (!tagView.isSelected){
+            selectedTags.insert(title)
+        }else{
+            selectedTags.remove(title)
+        }
+        tagView.isSelected = !tagView.isSelected
+    }
     
     func updateSaveButtonState(){
-        let symbolText = symbolTextField.text ?? ""
-        let nameText = nameTextField.text ?? ""
+        let symbolText      = symbolTextField.text ?? ""
+        let nameText        = nameTextField.text ?? ""
         let descripitonText = descriptionTextField.text ?? ""
-        let usageText = usageTextField.text ?? ""
         
-        saveButton.isEnabled = !symbolText.isEmpty && !nameText.isEmpty && !descripitonText.isEmpty && !usageText.isEmpty
+        saveButton.isEnabled = !symbolText.isEmpty && !nameText.isEmpty && !descripitonText.isEmpty
     }
     
     @IBAction func textChanged(_ sender: UITextField) {
@@ -56,25 +95,24 @@ class AddEditTableViewController: UITableViewController {
             return
         }
         
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        if viewedEmoji == nil {
+            let entity = NSEntityDescription.entity(forEntityName: "Emoji", in: moc)!
+            viewedEmoji = NSManagedObject(entity: entity, insertInto: moc)
         }
         
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "EmojiMO", in: managedContext)!
-        
-        let emoji = NSManagedObject(entity: entity, insertInto: managedContext)
-
-        emoji.setValue(symbolTextField.text!, forKeyPath: "symbol")
-        emoji.setValue(nameTextField.text!, forKeyPath: "name")
-        emoji.setValue(descriptionTextField.text!, forKeyPath: "desc")
-        emoji.setValue(usageTextField.text!, forKeyPath: "usage")
-        
-        self.emojiData = emoji
-        
+        viewedEmoji!.setValue(symbolTextField.text!, forKeyPath: "symbol")
+        viewedEmoji!.setValue(nameTextField.text!, forKeyPath: "name")
+        viewedEmoji!.setValue(descriptionTextField.text!, forKeyPath: "desc")
+        let newTags = viewedEmoji!.mutableSetValue(forKey: "tags")
+        for tag in alltags{
+            if (selectedTags.contains(tag.name!)) {
+                newTags.add(tag)
+            }else{
+                newTags.remove(tag)
+            }
+        }
         do {
-            try managedContext.save()
+            try moc.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
