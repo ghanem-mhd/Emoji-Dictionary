@@ -113,6 +113,7 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
         }
         do {
             try moc.save()
+            moc.refreshAllObjects()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }

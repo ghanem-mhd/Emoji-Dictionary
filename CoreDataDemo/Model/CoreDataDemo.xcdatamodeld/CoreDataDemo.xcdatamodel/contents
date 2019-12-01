@@ -7,11 +7,12 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="emojis" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="emojiCount" optional="YES" attributeType="Integer 64" derived="YES" derivationExpression="emojis.@count" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="emojis" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Emoji" inverseName="tags" inverseEntity="Emoji"/>
     </entity>
     <elements>
         <element name="Emoji" positionX="-541.05859375" positionY="108.9140625" width="128" height="103"/>
-        <element name="Tag" positionX="-213.26171875" positionY="154.51953125" width="128" height="73"/>
+        <element name="Tag" positionX="-213.26171875" positionY="154.51953125" width="128" height="88"/>
     </elements>
 </model>

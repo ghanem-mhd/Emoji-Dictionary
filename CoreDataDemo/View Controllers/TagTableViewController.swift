@@ -57,7 +57,7 @@ class TagTableViewController: UITableViewController, NSFetchedResultsControllerD
             fatalError("Attempt to configure cell without a managed object")
         }
         cell.textLabel?.text = tag.name
-        print(tag)
+        cell.detailTextLabel?.text = "\((tag.emojiCount ))"
         return cell
     }
     
