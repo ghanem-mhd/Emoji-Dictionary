@@ -29,6 +29,7 @@ class TagTableViewController: UITableViewController, NSFetchedResultsControllerD
     func initializeFetchedResultsController() {
         let request = NSFetchRequest<Tag>(entityName: "Tag")
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        // request.predicate = NSPredicate(format: "emojiCount > %d", 0)
         request.sortDescriptors = [nameSort]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
