@@ -266,7 +266,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="vOy-BV-ohj">
                             <connections>
-                                <segue destination="rVh-UH-6kY" kind="unwind" identifier="SaveUnwind" unwindAction="unwindToEmojiTableViewController:" id="TgL-QQ-Fhp"/>
+                                <action selector="onSaveButtonClicked:" destination="POg-z0-Dzx" id="6Lc-Zg-FGt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -277,6 +277,7 @@
                         <outlet property="saveButton" destination="vOy-BV-ohj" id="ZDn-9I-Ljh"/>
                         <outlet property="symbolTextField" destination="nlb-Vr-hZ5" id="tnI-eM-BAs"/>
                         <outlet property="tagsList" destination="PSI-S8-lXN" id="HX5-bs-1rQ"/>
+                        <segue destination="rVh-UH-6kY" kind="unwind" identifier="SaveUnwind" unwindAction="unwindToEmojiTableViewController:" id="FDe-rv-Rwd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOF-tk-JUF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

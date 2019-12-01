@@ -11,8 +11,8 @@ import CoreData
 import TagListView
 
 class AddEditTableViewController: UITableViewController, TagListViewDelegate {
-
-     var moc : NSManagedObjectContext!
+    
+    var moc : NSManagedObjectContext!
     
     @IBOutlet weak var symbolTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
@@ -25,7 +25,7 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
     var selectedTags = Set<String>()
     
     var alltags = [Tag]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +44,7 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
         }
         
         fetchAllTags()
-
+        
         tagsList.delegate = self
         
         updateSaveButtonState()
@@ -95,7 +95,10 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
         guard segue.identifier == "SaveUnwind" else {
             return
         }
-        
+    }
+    
+    @IBAction func onSaveButtonClicked(_ sender: Any) {
+        print("dsfsfds")
         if viewedEmoji == nil {
             let entity = NSEntityDescription.entity(forEntityName: "Emoji", in: moc)!
             viewedEmoji = NSManagedObject(entity: entity, insertInto: moc)
@@ -115,8 +118,15 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
         do {
             try moc.save()
             moc.refreshAllObjects()
+            performSegue(withIdentifier: "SaveUnwind", sender: nil)
         } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
+            showWarning("\(error)")
         }
+    }
+    
+    func showWarning(_ warningMessage:String){
+        let alertController = UIAlertController(title: "🤯😡🤬", message: warningMessage, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alertController, animated: true, completion: nil)
     }
 }
