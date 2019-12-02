@@ -25,6 +25,16 @@ class EmojiTableViewCell: UITableViewCell {
         descriptionLabel.text = emoji.value(forKeyPath: "desc") as? String
         nameLabel.text = emoji.value(forKeyPath: "name") as? String
     }
+    
+    /* equivalent with entity class definition:
+       
+     func update(with emoji: Emoji) {
+         symbolLabel.text = emoji.symbol
+         descriptionLabel.text = emoji.desc
+         nameLabel.text = emoji.name
+     }
+     
+    */
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
