@@ -2,8 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Emoji" representedClassName="Emoji" syncable="YES" codeGenerationType="class">
         <attribute name="desc" optional="YES" attributeType="String" minValueString="5" maxValueString="100"/>
-        <attribute name="name" optional="YES" attributeType="String" minValueString="3" maxValueString="10"/>
-        <attribute name="symbol" optional="YES" attributeType="String" minValueString="0" maxValueString="1"/>
+        <attribute name="name" optional="YES" attributeType="String" minValueString="3" maxValueString="20"/>
+        <attribute name="symbol" optional="YES" attributeType="String" minValueString="0" maxValueString="2"/>
         <relationship name="tags" optional="YES" toMany="YES" minCount="1" maxCount="3" deletionRule="Nullify" destinationEntity="Tag" inverseName="emojis" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">

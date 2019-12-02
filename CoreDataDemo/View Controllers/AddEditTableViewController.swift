@@ -98,7 +98,6 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
     }
     
     @IBAction func onSaveButtonClicked(_ sender: Any) {
-        print("dsfsfds")
         if viewedEmoji == nil {
             let entity = NSEntityDescription.entity(forEntityName: "Emoji", in: moc)!
             viewedEmoji = NSManagedObject(entity: entity, insertInto: moc)
@@ -116,14 +115,16 @@ class AddEditTableViewController: UITableViewController, TagListViewDelegate {
             }
         }
         do {
+            try viewedEmoji!.validateForInsert()
             try moc.save()
             moc.refreshAllObjects()
             performSegue(withIdentifier: "SaveUnwind", sender: nil)
         } catch let error as NSError {
+            moc.rollback()
             showWarning("\(error)")
         }
     }
-    
+        
     func showWarning(_ warningMessage:String){
         let alertController = UIAlertController(title: "🤯😡🤬", message: warningMessage, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))

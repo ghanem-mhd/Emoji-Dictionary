@@ -144,9 +144,7 @@ class EmojiTableViewController: UITableViewController, NSFetchedResultsControlle
         }
     }
     
-    @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
-        guard unwindSegue.identifier == "SaveUnwind" else {
-            return
-        }
+    @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue){
+        print("Hello")
     }
 }
