@@ -29,11 +29,12 @@ class EmojiTableViewController: UITableViewController, NSFetchedResultsControlle
             return
         }
         
-        // set delegate so searchBar's input changes can be caught
-        self.searchBar.delegate = self
-        
         // save ManagedObjectContext in class attribute
         self.moc = appDelegate.persistentContainer.viewContext
+        
+        
+        // set delegate so searchBar's input changes can be caught
+        self.searchBar.delegate = self
         
         // fetch data
         initializeFetchedResultsController()
@@ -110,7 +111,7 @@ class EmojiTableViewController: UITableViewController, NSFetchedResultsControlle
         guard let emoji = self.fetchedResultsController?.object(at: indexPath) else {
             fatalError("Attempt to configure cell without a managed object")
         }
-        cell.update(with: emoji) // todo
+        cell.update(with: emoji)
         return cell
     }
     
